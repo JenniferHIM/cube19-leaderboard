@@ -1,0 +1,12 @@
+@import '../../styles/fonts';
+@import '../../styles/variables';
+
+.title {
+  font: normal bold 34px/32px "Gilroy";
+  color: $black-color;
+  text-align: center;
+
+  &__part {
+    color: $part-color;
+  }
+}
