@@ -5,8 +5,8 @@ import {ILeader} from '../../redux/leaders/interfaces/index';
 import LeadersItem from '../LeadersItem/LeadersItem';
 import {sortAllLeaders} from '../../redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from '../../redux/modal/modal-selectors';
-// import ModalAdd from '../ModalAdd/ModalAdd';
-// import ModalEdit from '../ModalEdit/ModalEdit';
+// TODO: import ModalAdd from '../ModalAdd/ModalAdd';
+// TODO: import ModalEdit from '../ModalEdit/ModalEdit';
 import styles from './LeadersList.module.scss';
 
 const LeadersList = () => {
@@ -32,7 +32,7 @@ const LeadersList = () => {
       </button>
       <div className={styles.leaderList__item}>
         <LeadersItem leaders={[]} />
-        {/* {isModalAddLeaders && <ModalAdd />}
+        {/* TODO: {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && <ModalEdit />} */}
       </div>
     </div>
