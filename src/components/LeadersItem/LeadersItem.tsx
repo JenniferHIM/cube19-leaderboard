@@ -11,7 +11,7 @@ type LeadersItemProps = {
 
 const LeadersItem: FC<LeadersItemProps> = ({leaders}: LeadersItemProps) => (
   <div className={styles.leadersItem}>
-    {leaders &&
+    {leaders.length > 0 &&
       leaders.map((leader) => (
         <li key={uuidv4()} className={styles.leadersItem__item}>
           <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
