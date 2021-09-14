@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
 import {v4 as uuidv4} from 'uuid';
-import {ILeader} from '../../redux/leaders/interfaces/index';
+import {ILeader} from 'redux/leaders/interfaces/index';
+import LeaderImg from 'images/leader.png';
+import PencilImg from 'images/pencil.png';
 import styles from './LeadersItem.module.scss';
-import LeaderImg from '../../images/leader.png';
-import PencilImg from '../../images/pencil.png';
 
 type LeadersItemProps = {
   leaders: ILeader[];
@@ -11,7 +11,7 @@ type LeadersItemProps = {
 
 const LeadersItem: FC<LeadersItemProps> = ({leaders}: LeadersItemProps) => (
   <div className={styles.leadersItem}>
-    {leaders &&
+    {!!leaders.length &&
       leaders.map((leader) => (
         <li key={uuidv4()} className={styles.leadersItem__item}>
           <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />

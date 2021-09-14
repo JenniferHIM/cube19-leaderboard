@@ -1,6 +1,4 @@
-const ADD = 'leaders/add';
-const EDIT = 'leaders/edit';
+import {createAction} from '@reduxjs/toolkit';
 
-const actionTypes = {ADD, EDIT};
-
-export default actionTypes;
+export const addLeadersActions = createAction('leaders/AddLeaders');
+export const editLeadersActions = createAction('leaders/EditLeaders');
