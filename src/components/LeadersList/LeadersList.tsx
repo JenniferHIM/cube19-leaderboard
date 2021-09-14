@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {modalAddLeadersActions, modalEditLeadersActions} from 'redux/modal/modal-actions';
-import {ILeader} from '../../redux/leaders/interfaces/index';
+import {ILeader} from 'redux/leaders/interfaces/index';
+import {sortAllLeaders} from 'redux/leaders/leaders-selectors';
+import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
 import LeadersItem from '../LeadersItem/LeadersItem';
-import {sortAllLeaders} from '../../redux/leaders/leaders-selectors';
-import {modalAddLeadersSelectors, modalEditLeadersSelectors} from '../../redux/modal/modal-selectors';
 import ModalAdd from '../ModalAdd/ModalAdd';
 import ModalEdit from '../ModalEdit/ModalEdit';
 import styles from './LeadersList.module.scss';

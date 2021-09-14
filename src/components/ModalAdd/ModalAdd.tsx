@@ -2,17 +2,17 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {modalAddLeadersActions} from 'redux/modal/modal-actions';
 import {toast} from 'react-toastify';
-import {ILeaderFirst} from '../../redux/leaders/interfaces/index';
-import {addLeaders} from '../../redux/leaders/leaders-actions';
+import {ILeaderFirst} from 'redux/leaders/interfaces/index';
+import {addLeaders} from 'redux/leaders/leaders-actions';
 import styles from './ModalAdd.module.scss';
 
 const ModalAdd = () => {
   const [leaderName, setLeaderName] = useState('');
-  const [leaderScore, setLeaderScore] = useState('_');
+  const [leaderScore, setLeaderScore] = useState(null);
   const dispatch = useDispatch();
   const onToggleModal = () => dispatch(modalAddLeadersActions());
   const handleSubmit = (leader: ILeaderFirst) => {
-    if (leader.name !== '' && leader.score !== Number('_')) {
+    if (leader.name !== '' && leader.score !== null) {
       dispatch(addLeaders());
       onToggleModal();
     } else {
@@ -41,7 +41,7 @@ const ModalAdd = () => {
               type="number"
               name="score"
               placeholder="Score:"
-              onChange={(e) => setLeaderScore(e.target.value)}
+              onChange={(e) => Number(e.target.value)}
             />
             <button className={styles.modalAdd__button}>Save</button>
           </form>
