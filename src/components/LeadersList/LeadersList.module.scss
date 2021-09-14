@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.leaderList {
+  width: 984px;
+  max-height: 568px;
+  background: $section-background;
+  border: 1px solid $border;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: auto;
+
+  @include displayFlex(space-between, center, row);
+
+  &__title {
+    margin-left: 33px;
+    font: normal 600 20px/32px "Gilroy";
+  }
+
+    &__button {
+    color: $section-background;
+    background-color: $add-button;
+    border: $border;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 140px;
+    height: 41px;
+  }
+}
+
+
+
+
