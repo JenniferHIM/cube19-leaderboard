@@ -11,7 +11,8 @@ const ModalAdd = () => {
   const [leaderScore, setLeaderScore] = useState(null);
   const dispatch = useDispatch();
   const onToggleModal = () => dispatch(modalAddLeadersActions());
-  const handleSubmit = (leader: ILeaderFirst) => {
+
+  const handleSubmit = (leader: ILeaderFirst): void => {
     if (leader.name !== '' && leader.score !== null) {
       dispatch(addLeaders());
       onToggleModal();
@@ -43,7 +44,9 @@ const ModalAdd = () => {
               placeholder="Score:"
               onChange={(e) => Number(e.target.value)}
             />
-            <button className={styles.modalAdd__button}>Save</button>
+            <button type="submit" className={styles.modalAdd__button}>
+              Save
+            </button>
           </form>
         </div>
       </div>
