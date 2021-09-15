@@ -32,26 +32,41 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
     }
   };
 
+  const handleBackdrop = (event: React.FormEvent<EventTarget>): void => {
+    if (event.currentTarget === event.target) {
+      onToggleModal();
+    }
+  };
+
   return (
-    <div className={styles.modalEdit}>
-      <form onSubmit={handleSubmit}>
-        <h1 className={styles.modalEdit__title}>Edit user score</h1>
-        <input
-          className={styles.modalEdit__input}
-          type="text"
-          name={data.name}
-          placeholder="Name:"
-          onChange={handleInput}
-        />
-        <input
-          className={styles.modalEdit__input}
-          type="number"
-          name="score"
-          placeholder="Score:"
-          onChange={handleInput}
-        />
-        <button>Save</button>
-      </form>
+    <div className={styles.backdrop} onClick={handleBackdrop}>
+      <div className={styles.modalWrapper}>
+        <div className={styles.modalEdit}>
+          <button className={styles.modalEdit__closeBtn} onClick={onToggleModal}>
+            x
+          </button>
+          <form className={styles.modalEdit__form} onSubmit={handleSubmit}>
+            <h1 className={styles.modalEdit__title}>Edit user score</h1>
+            <input
+              className={styles.modalEdit__input}
+              type="text"
+              name={data.name}
+              placeholder="Name:"
+              onChange={handleInput}
+            />
+            <input
+              className={styles.modalEdit__input}
+              type="number"
+              name="score"
+              placeholder="Score:"
+              onChange={handleInput}
+            />
+            <button type="submit" className={styles.modalEdit__button}>
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
