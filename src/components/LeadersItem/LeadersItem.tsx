@@ -5,11 +5,18 @@ import LeaderImg from 'images/leader.png';
 import PencilImg from 'images/pencil.png';
 import styles from './LeadersItem.module.scss';
 
+enum sortVariant {
+  green,
+  yellow,
+  red,
+}
+
 type LeadersItemProps = {
   leaders: ILeader[];
+  editLeader: (param: ILeader) => void;
 };
 
-const LeadersItem: FC<LeadersItemProps> = ({leaders}: LeadersItemProps) => (
+const LeadersItem: FC<LeadersItemProps> = ({leaders, editLeader}: LeadersItemProps) => (
   <div className={styles.leadersItem}>
     {!!leaders.length &&
       leaders.map((leader) => (
@@ -17,7 +24,10 @@ const LeadersItem: FC<LeadersItemProps> = ({leaders}: LeadersItemProps) => (
           <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
           <p className={styles.leaderItem__score}>{leader.score}</p>
           <p className={styles.leaderItem__name}>{leader.name}</p>
-          <img src={PencilImg} alt="pencil" />
+          <div>{leader.change === 0 ? 'No Change' : `${leader.change} place`}</div>
+          <button className={styles.leadersItem__btnEdit} onClick={() => editLeader(leader)}>
+            <img src={PencilImg} alt="pencil" />
+          </button>
         </li>
       ))}
   </div>
