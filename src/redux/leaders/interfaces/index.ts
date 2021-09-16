@@ -3,7 +3,3 @@ export interface ILeader {
   rank: number;
   score: number;
 }
-export interface ILeaderFirst {
-  name: string;
-  score: number;
-}

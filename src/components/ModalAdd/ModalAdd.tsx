@@ -2,19 +2,18 @@ import {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {modalAddLeadersActions} from 'redux/modal/modal-actions';
 import {toast} from 'react-toastify';
-import {ILeaderFirst} from 'redux/leaders/interfaces/index';
 import {addLeaders} from 'redux/leaders/leaders-actions';
 import styles from './ModalAdd.module.scss';
 
 const ModalAdd = () => {
   const [leaderName, setLeaderName] = useState('');
-  const [leaderScore, setLeaderScore] = useState(null);
+  const [leaderScore, setLeaderScore] = useState<number | null>(null);
   const dispatch = useDispatch();
   const onToggleModal = () => dispatch(modalAddLeadersActions());
 
-  const handleSubmit = (leader: ILeaderFirst): void => {
-    if (leader.name !== '' && leader.score !== null) {
-      dispatch(addLeaders());
+  const handleSubmit = (): void => {
+    if (leaderName !== '' && leaderScore !== null) {
+      dispatch(addLeaders({name: leaderName, score: leaderScore, rank: 0}));
       onToggleModal();
     } else {
       toast.error('Type your name and score');
@@ -42,9 +41,9 @@ const ModalAdd = () => {
               type="number"
               name="score"
               placeholder="Score:"
-              onChange={(e) => Number(e.target.value)}
+              onChange={(e) => setLeaderScore(Number(e.target.value))}
             />
-            <button type="submit" className={styles.modalAdd__button}>
+            <button type="submit" onClick={handleSubmit} className={styles.modalAdd__button}>
               Save
             </button>
           </form>

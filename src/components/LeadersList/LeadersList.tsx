@@ -31,7 +31,7 @@ const LeadersList = () => {
         + Add new score
       </button>
       <div className={styles.leaderList__item}>
-        <LeadersItem leaders={[]} />
+        {!!leaders.length && leaders.map((leader) => <LeadersItem leader={leader} />)}
         {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && <ModalEdit data={leader} />}
       </div>

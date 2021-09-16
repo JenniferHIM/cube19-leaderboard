@@ -6,20 +6,17 @@ import PencilImg from 'images/pencil.png';
 import styles from './LeadersItem.module.scss';
 
 type LeadersItemProps = {
-  leaders: ILeader[];
+  leader: ILeader;
 };
 
-const LeadersItem: FC<LeadersItemProps> = ({leaders}: LeadersItemProps) => (
+const LeadersItem: FC<LeadersItemProps> = ({leader}: LeadersItemProps) => (
   <div className={styles.leadersItem}>
-    {!!leaders.length &&
-      leaders.map((leader) => (
-        <li key={uuidv4()} className={styles.leadersItem__item}>
-          <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
-          <p className={styles.leaderItem__score}>{leader.score}</p>
-          <p className={styles.leaderItem__name}>{leader.name}</p>
-          <img src={PencilImg} alt="pencil" />
-        </li>
-      ))}
+    <li key={uuidv4()} className={styles.leadersItem__item}>
+      <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
+      <p className={styles.leaderItem__score}>{leader.score}</p>
+      <p className={styles.leaderItem__name}>{leader.name}</p>
+      <img src={PencilImg} alt="pencil" />
+    </li>
   </div>
 );
 
