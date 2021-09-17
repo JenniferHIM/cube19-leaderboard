@@ -1,7 +1,6 @@
 import {useState, FC, FormEvent} from 'react';
 import {useDispatch} from 'react-redux';
 import {ILeader} from 'redux/leaders/interfaces/index';
-import {editLeadersActions} from 'redux/leaders/leaders-types';
 import {modalEditLeadersActions} from 'redux/modal/modal-actions';
 import {editLeaders} from 'redux/leaders/leaders-actions';
 import {toast} from 'react-toastify';
@@ -16,17 +15,24 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
   const onToggleModal = () => dispatch(modalEditLeadersActions());
   const [editLeader, setEditLeader] = useState(data);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEditLeader((state) => ({
-      ...state,
-      [e.target.name]: Number(e.target.value),
-    }));
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
+    if (field === 'name') {
+      setEditLeader((state) => ({
+        ...state,
+        name: e.target.value,
+      }));
+    } else {
+      setEditLeader((state) => ({
+        ...state,
+        score: Number(e.target.value),
+      }));
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (data.score !== editLeader.score) {
-      dispatch({type: [editLeadersActions.type], payload: editLeaders});
+      dispatch(editLeaders(editLeader));
       onToggleModal();
     } else {
       toast.error('It has no changes!');
@@ -53,14 +59,14 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
               type="text"
               name={data.name}
               placeholder="Name:"
-              onChange={handleInput}
+              onChange={(e) => handleInput(e, 'name')}
             />
             <input
               className={styles.modalEdit__input}
               type="number"
               name="score"
               placeholder="Score:"
-              onChange={handleInput}
+              onChange={(e) => handleInput(e, 'score')}
             />
             <button type="submit" onClick={handleSubmit} className={styles.modalEdit__button}>
               Save

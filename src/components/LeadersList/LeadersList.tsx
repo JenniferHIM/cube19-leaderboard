@@ -11,7 +11,7 @@ import styles from './LeadersList.module.scss';
 
 const LeadersList = () => {
   const dispatch = useDispatch();
-  const [leader, setLeader] = useState<ILeader>({name: '', rank: 0, score: 0});
+  const [leader, setLeader] = useState<ILeader>();
   const leaders = useSelector(sortAllLeaders);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
@@ -36,7 +36,7 @@ const LeadersList = () => {
       <div className={styles.leaderList__item}>
         {!!leaders.length && leaders.map((leader) => <LeadersItem leader={leader} editLeader={handleEditLeader} />)}
         {isModalAddLeaders && <ModalAdd />}
-        {isModalEditLeaders && <ModalEdit data={leader} />}
+        {isModalEditLeaders && leader && <ModalEdit data={leader} />}
       </div>
     </div>
   );
