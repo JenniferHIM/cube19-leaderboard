@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 import {ILeader} from 'redux/leaders/interfaces/index';
 import {editLeadersActions} from 'redux/leaders/leaders-types';
 import {modalEditLeadersActions} from 'redux/modal/modal-actions';
+import {editLeaders} from 'redux/leaders/leaders-actions';
 import {toast} from 'react-toastify';
 import styles from 'components/ModalEdit/ModalEdit.module.scss';
 
@@ -25,7 +26,7 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (data.score !== editLeader.score) {
-      dispatch({type: [editLeadersActions.type], payload: editLeader});
+      dispatch({type: [editLeadersActions.type], payload: editLeaders});
       onToggleModal();
     } else {
       toast.error('It has no changes!');
@@ -61,7 +62,7 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
               placeholder="Score:"
               onChange={handleInput}
             />
-            <button type="submit" className={styles.modalEdit__button}>
+            <button type="submit" onClick={handleSubmit} className={styles.modalEdit__button}>
               Save
             </button>
           </form>
