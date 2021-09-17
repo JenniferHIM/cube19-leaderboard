@@ -19,19 +19,22 @@ const LeadersList = () => {
   const isModalAddLeaders = useSelector(modalAddLeadersSelectors);
   const isModalEditLeaders = useSelector(modalEditLeadersSelectors);
 
-  const handleUpdateLeader = (leader: ILeader) => {
+  const handleEditLeader = (leader: ILeader) => {
     dispatch(modalEditLeadersActions());
     setLeader(leader);
   };
 
   return (
     <div className={styles.leaderList}>
-      <h2 className={styles.leaderList__title}>Leaders table for this period</h2>
-      <button type="button" className={styles.leaderList__button} onClick={onToggleAddModal}>
-        + Add new score
-      </button>
+      <div className={styles.leaderList__header}>
+        <h2 className={styles.leaderList__title}>Leaders table for this period</h2>
+        <button type="button" className={styles.leaderList__button} onClick={onToggleAddModal}>
+          + Add new score
+        </button>
+      </div>
+
       <div className={styles.leaderList__item}>
-        {!!leaders.length && leaders.map((leader) => <LeadersItem leader={leader} />)}
+        {!!leaders.length && leaders.map((leader) => <LeadersItem leader={leader} editLeader={handleEditLeader} />)}
         {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && <ModalEdit data={leader} />}
       </div>

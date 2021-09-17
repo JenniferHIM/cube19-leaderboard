@@ -1,0 +1,39 @@
+@import '../../styles/mixin';
+@import '../../styles/variables';
+@import '../../styles/fonts';
+
+.leadersItem {
+
+  &__item {
+    list-style: none;
+    @include displayFlex(null, center, null);
+  }
+
+  &__img {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    margin-left: 89px;
+  }
+
+  &__score {
+    font: normal bold 30px/21px "Gilroy";
+    color: $name;
+    opacity: 0.91;
+    margin-left: 42px;
+  }
+
+  &__name {
+    font: normal normal 14px/21px "Lato";
+    color: $name;
+    margin-left: 37px;
+  }
+
+  &__edit {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    margin-right: 33px;
+    margin-left: 400px;
+  }
+}
