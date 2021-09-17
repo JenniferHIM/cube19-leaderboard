@@ -55,6 +55,7 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
           <form className={styles.modalEdit__form} onSubmit={handleSubmit}>
             <h1 className={styles.modalEdit__title}>Edit user score</h1>
             <input
+              defaultValue={data.name || ''}
               className={styles.modalEdit__input}
               type="text"
               name={data.name}
@@ -62,6 +63,7 @@ const ModalEdit: FC<ModalEditProps> = ({data}: ModalEditProps) => {
               onChange={(e) => handleInput(e, 'name')}
             />
             <input
+              defaultValue={data.score || ''}
               className={styles.modalEdit__input}
               type="number"
               name="score"
