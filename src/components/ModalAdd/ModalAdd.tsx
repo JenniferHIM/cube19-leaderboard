@@ -14,7 +14,7 @@ const ModalAdd = () => {
 
   const handleSubmit = (): void => {
     if (leaderName !== '' && leaderScore !== null) {
-      dispatch(addLeaders({name: leaderName, score: leaderScore, rank: 0, id: uuidv4()}));
+      dispatch(addLeaders({name: leaderName, score: leaderScore, rank: 0, change: 0, id: uuidv4()}));
       onToggleModal();
     } else {
       toast.error('Type your name and score');
