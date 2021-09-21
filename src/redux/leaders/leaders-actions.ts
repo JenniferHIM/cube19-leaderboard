@@ -1,13 +1,19 @@
-import {createAsyncThunk, createAction} from '@reduxjs/toolkit';
+import {createAction} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
 import axios from 'axios';
 import {Dispatch} from 'redux';
 import {ILeader} from './interfaces';
 import {baseUrl} from '../api';
-import {fetchLeadersRequest, fetchLeadersSuccess, fetchLeadersError} from './leaders-types';
 
 export const addLeaders = createAction<ILeader>('leaders/add');
 export const editLeaders = createAction<ILeader>('leaders/edit');
+
+// export const addLeadersActions = createAction('leaders/AddLeaders');
+// export const editLeadersActions = createAction('leaders/EditLeaders');
+
+export const fetchLeadersRequest = createAction('leaders/fetchLeadersRequest');
+export const fetchLeadersSuccess = createAction('leaders/fetchLeadersSuccess');
+export const fetchLeadersError = createAction('leaders/fetchLeadersError');
 
 export const fetchLeaders = () => async (dispatch: Dispatch) => {
   dispatch(fetchLeadersRequest());

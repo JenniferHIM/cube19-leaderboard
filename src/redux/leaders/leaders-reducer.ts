@@ -1,8 +1,7 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {ILeader} from './interfaces/index';
-import {addLeaders, editLeaders} from './leaders-actions';
+import {addLeaders, editLeaders, fetchLeadersSuccess} from './leaders-actions';
 import {addLeadersOperations, editLeadersOperations, getLeadersOperations} from './leaders-operations';
-import {fetchLeadersSuccess} from './leaders-types';
 
 const initialState: ILeader[] = [];
 

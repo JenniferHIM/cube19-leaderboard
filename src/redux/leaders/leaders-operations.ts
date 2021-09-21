@@ -1,6 +1,4 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
 import {ILeader} from './interfaces/index';
-import {getLeaders} from '../api';
 
 export const addLeadersOperations = (state: ILeader[], {payload}: {payload: ILeader}) => [...state, {...payload}];
 
@@ -8,7 +6,7 @@ export const editLeadersOperations = (state: ILeader[], {payload}: {payload: ILe
   state.map((leader) => (leader.id === payload.id ? payload : leader));
 
 export const getLeadersOperations = (state: ILeader[], {payload}: {payload: ILeader[]}) => ({
-  payload,
+  ...payload,
 });
 
 // export const fetchLeadersOperations = createAsyncThunk('leaders/fetchLeaders', async () => {
