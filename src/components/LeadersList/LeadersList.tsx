@@ -16,10 +16,6 @@ const LeadersList = () => {
   const leaders = useSelector(getAllLeaders);
 
   useEffect(() => {
-    console.log('leaders', leaders);
-  }, [leaders]);
-
-  useEffect(() => {
     dispatch(fetchLeaders());
   }, []);
 
