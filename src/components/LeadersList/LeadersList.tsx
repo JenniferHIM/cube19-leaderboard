@@ -16,6 +16,10 @@ const LeadersList = () => {
   const leaders = useSelector(getAllLeaders);
 
   useEffect(() => {
+    console.log('leaders', leaders);
+  }, [leaders]);
+
+  useEffect(() => {
     dispatch(fetchLeaders());
   }, []);
 
@@ -39,7 +43,8 @@ const LeadersList = () => {
       </div>
 
       <div className={styles.leaderList__item}>
-        {!!leaders.length && leaders.map((leader) => <LeadersItem leader={leader} editLeader={handleEditLeader} />)}
+        {!!leaders.length &&
+          leaders.map((leader) => <LeadersItem key={leader.id} leader={leader} editLeader={handleEditLeader} />)}
         {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && leader && <ModalEdit data={leader} />}
       </div>
