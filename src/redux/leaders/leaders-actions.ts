@@ -12,7 +12,7 @@ export const editLeaders = createAction<ILeader>('leaders/edit');
 // export const editLeadersActions = createAction('leaders/EditLeaders');
 
 export const fetchLeadersRequest = createAction('leaders/fetchLeadersRequest');
-export const fetchLeadersSuccess = createAction('leaders/fetchLeadersSuccess');
+export const fetchLeadersSuccess = createAction<Array<ILeader>>('leaders/fetchLeadersSuccess');
 export const fetchLeadersError = createAction('leaders/fetchLeadersError');
 
 export const fetchLeaders = () => async (dispatch: Dispatch) => {
@@ -20,10 +20,10 @@ export const fetchLeaders = () => async (dispatch: Dispatch) => {
   try {
     const {data} = await axios.get(baseUrl);
     const leader = data.map((item: ILeader) => ({name: item.name, score: item.score ? item.score : 0}));
-    dispatch({type: [fetchLeadersSuccess.type], payload: leader});
+    dispatch(fetchLeadersSuccess(leader));
   } catch (error) {
     toast.error('Error request');
-    dispatch({type: [fetchLeadersError.type]});
+    dispatch(fetchLeadersError());
   }
 };
 

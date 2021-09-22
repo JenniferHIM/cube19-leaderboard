@@ -7,7 +7,7 @@ export const baseUrl = 'http://coding-test.cube19.io/frontend/v1/starting-state'
 
 export async function getLeaders() {
   try {
-    const {data} = await axios.get('/leaders');
+    const {data} = await axios.get(baseUrl);
     return data;
   } catch (error) {
     toast.error('Getting Leaders error.');

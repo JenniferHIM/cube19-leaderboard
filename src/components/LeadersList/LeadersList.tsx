@@ -1,9 +1,10 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {modalAddLeadersActions, modalEditLeadersActions} from 'redux/modal/modal-actions';
 import {ILeader} from 'redux/leaders/interfaces/index';
-import {sortAllLeaders} from 'redux/leaders/leaders-selectors';
+import {getAllLeaders} from 'redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
+import {fetchLeaders} from 'redux/leaders/leaders-actions';
 import LeadersItem from '../LeadersItem/LeadersItem';
 import ModalAdd from '../ModalAdd/ModalAdd';
 import ModalEdit from '../ModalEdit/ModalEdit';
@@ -12,7 +13,11 @@ import styles from './LeadersList.module.scss';
 const LeadersList = () => {
   const dispatch = useDispatch();
   const [leader, setLeader] = useState<ILeader>();
-  const leaders = useSelector(sortAllLeaders);
+  const leaders = useSelector(getAllLeaders);
+
+  useEffect(() => {
+    dispatch(fetchLeaders());
+  }, []);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
 
