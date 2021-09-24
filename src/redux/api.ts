@@ -4,6 +4,7 @@ import {toast} from 'react-toastify';
 import {ILeader} from './leaders/interfaces';
 
 export const baseUrl = 'http://coding-test.cube19.io/frontend/v1/starting-state';
+export const postUrl = 'http://coding-test.cube19.io/frontend/v1/process-user';
 
 export async function getLeaders() {
   try {
@@ -11,6 +12,16 @@ export async function getLeaders() {
     return data;
   } catch (error) {
     toast.error('Getting Leaders error.');
+    return new Promise(isRejected);
+  }
+}
+
+export async function postLeaders() {
+  try {
+    const {data} = await axios.post(postUrl);
+    return data;
+  } catch (error) {
+    toast.error('Posting Leaders error');
     return new Promise(isRejected);
   }
 }
