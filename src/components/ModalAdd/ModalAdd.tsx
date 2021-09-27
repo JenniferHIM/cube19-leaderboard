@@ -1,9 +1,8 @@
 import {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {v4 as uuidv4} from 'uuid';
 import {modalAddLeadersActions} from 'redux/modal/modal-actions';
 import {toast} from 'react-toastify';
-import {addLeaders} from 'redux/leaders/leaders-actions';
+import {postLeaders} from 'redux/leaders/leaders-actions';
 import styles from './ModalAdd.module.scss';
 
 const ModalAdd = () => {
@@ -14,7 +13,7 @@ const ModalAdd = () => {
 
   const handleSubmit = (): void => {
     if (leaderName !== '' && leaderScore !== null) {
-      dispatch(addLeaders({name: leaderName, score: leaderScore, rank: 0, change: 0, id: uuidv4()}));
+      dispatch(postLeaders({username: leaderName, score: leaderScore}));
       onToggleModal();
     } else {
       toast.error('Type your name and score');
