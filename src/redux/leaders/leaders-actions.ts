@@ -1,10 +1,9 @@
 import {createAction} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
-import axios from 'axios';
 import {v4 as uuidv4} from 'uuid';
 import {Dispatch} from 'redux';
 import {ILeader} from './interfaces';
-import {baseUrl, postUrl} from '../api';
+import {instance, baseUrl, postUrl} from '../api';
 
 export const addLeaders = createAction<ILeader>('leaders/add');
 export const editLeaders = createAction<ILeader>('leaders/edit');
@@ -20,7 +19,7 @@ export const postLeadersError = createAction('leaders/postLeadersError');
 export const fetchLeaders = () => async (dispatch: Dispatch) => {
   dispatch(fetchLeadersRequest());
   try {
-    const {data} = await axios.get(baseUrl);
+    const {data} = await instance.get(baseUrl);
     const leaders = data.map((item: ILeader) => ({name: item.name, score: item.score ? item.score : 0}));
     dispatch(fetchLeadersSuccess(leaders));
   } catch (error) {
@@ -32,7 +31,7 @@ export const fetchLeaders = () => async (dispatch: Dispatch) => {
 export const postLeaders = (leader: {username: string; score: number}) => async (dispatch: Dispatch) => {
   dispatch(fetchLeadersRequest());
   try {
-    const {data} = await axios.post(postUrl, {username: leader.username});
+    const {data} = await instance.post(postUrl, {username: leader.username});
     const leaderToAdd: ILeader = {
       name: leader.username,
       score: leader.score,
