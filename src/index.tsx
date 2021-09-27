@@ -1,19 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {baseUrl} from 'redux/api';
 import {Provider} from 'react-redux';
 import axios from 'axios';
 import store from './redux/store';
 import App from './App';
 
-// axios.interceptors.request.use((request) => {
-//   console.log(request);
-//   return request;
-// });
+const axiosConfig = {
+  baseURL: process.env.REACT_APP_API,
+};
 
-axios.interceptors.response.use((response) => response);
+const instance = axios.create(axiosConfig);
+// on successful response
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 500) {
+      const backUrl = window.location.pathname !== baseUrl ? `?backUrl=${window.location.pathname}` : '';
+      window.location.href = backUrl;
+    } else {
+      throw error.response;
+    }
+  }
+);
 
-// axios.post('http://coding-test.cube19.io/frontend/v1/process-user', {});
-// const res = await axios.get('http://coding-test.cube19.io/frontend/v1/process-user');
+export default instance;
 
 ReactDOM.render(
   <Provider store={store}>

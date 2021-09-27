@@ -1,6 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 import {toast} from 'react-toastify';
 import axios from 'axios';
+import {v4 as uuidv4} from 'uuid';
 import {Dispatch} from 'redux';
 import {ILeader} from './interfaces';
 import {baseUrl, postUrl} from '../api';
@@ -28,16 +29,16 @@ export const fetchLeaders = () => async (dispatch: Dispatch) => {
   }
 };
 
-export const postLeaders = (leader: {name: string; score: number}) => async (dispatch: Dispatch) => {
+export const postLeaders = (leader: {username: string; score: number}) => async (dispatch: Dispatch) => {
   dispatch(fetchLeadersRequest());
   try {
-    const {data} = await axios.post(postUrl, leader);
+    const {data} = await axios.post(postUrl, {username: leader.username});
     const leaderToAdd: ILeader = {
-      id: data.id,
-      name: data.name,
-      score: data.score,
-      rank: data.rank,
-      change: data.change,
+      name: leader.username,
+      score: leader.score,
+      id: uuidv4(),
+      rank: 0,
+      change: 0,
     };
     dispatch(postLeadersSuccess(leaderToAdd));
   } catch (error) {
