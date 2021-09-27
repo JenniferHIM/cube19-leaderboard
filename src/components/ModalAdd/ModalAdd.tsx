@@ -3,10 +3,14 @@ import {useDispatch} from 'react-redux';
 import {v4 as uuidv4} from 'uuid';
 import axios from 'axios';
 import {postUrl} from 'redux/api';
-import {modalAddLeadersActions, modalPostLeadersAction, postLeaders} from 'redux/modal/modal-actions';
+import {modalAddLeadersActions} from 'redux/modal/modal-actions';
 import {toast} from 'react-toastify';
-import {addLeaders} from 'redux/leaders/leaders-actions';
+import {addLeaders, postLeaders} from 'redux/leaders/leaders-actions';
 import styles from './ModalAdd.module.scss';
+
+// useEffect(() => {
+//   dispatch(postLeaders);
+// }, []);
 
 const ModalAdd = () => {
   const [leaderName, setLeaderName] = useState('');
@@ -14,33 +18,15 @@ const ModalAdd = () => {
   const dispatch = useDispatch();
   const onToggleModal = () => dispatch(modalAddLeadersActions());
 
-  useEffect(() => {
-    dispatch(postLeaders);
-  }, []);
-
-  // const postLeaders = () => {
-  //   fetch('http://localhost:3000/game', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name: formData, // Use your own property name / key
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => setData(result.rows))
-  //     .catch((err) => console.log('error'));
-  // };
-
   const handleSubmit = (): void => {
     if (leaderName !== '' && leaderScore !== null) {
+      dispatch(postLeaders({name: leaderName, score: leaderScore}));
       dispatch(addLeaders({name: leaderName, score: leaderScore, rank: 0, change: 0, id: uuidv4()}));
       onToggleModal();
-      axios.post(postUrl, {}).then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
+      // axios.post(postUrl, {}).then((res) => {
+      //   console.log(res);
+      //   console.log(res.data);
+      // });
     } else {
       toast.error('Type your name and score');
     }
