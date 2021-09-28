@@ -1,3 +1,4 @@
+import {ILeader} from './interfaces';
 import {RootState} from '../store';
 
 export const getAllLeaders = (state: RootState) => state.leaders;
