@@ -1,15 +1,31 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {ILeader} from './interfaces/index';
-import {addLeaders, editLeaders, fetchLeadersSuccess, postLeadersSuccess} from './leaders-actions';
-import {addLeadersOperation, editLeadersOperation, getLeadersOperation} from './leaders-operations';
+import {
+  addLeaders,
+  editLeaders,
+  fetchLeadersSuccess,
+  postLeadersSuccess,
+  addPrevLeadersAction,
+} from './leaders-actions';
+
+import {
+  addLeadersOperation,
+  editLeadersOperation,
+  getLeadersOperation,
+  addPrevLeadersOperation,
+} from './leaders-operations';
 
 const initialState: ILeader[] = [];
 
-const leaders = createReducer(initialState, {
+export const leaders = createReducer(initialState, {
   [addLeaders.type]: addLeadersOperation,
   [editLeaders.type]: editLeadersOperation,
   [fetchLeadersSuccess.type]: getLeadersOperation,
   [postLeadersSuccess.type]: addLeadersOperation,
 });
 
-export default leaders;
+const initialStatePrevLeaders: ILeader[][] = [];
+
+export const prevLeaders = createReducer(initialStatePrevLeaders, {
+  [addPrevLeadersAction.type]: addPrevLeadersOperation,
+});

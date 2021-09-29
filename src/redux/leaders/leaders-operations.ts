@@ -9,3 +9,5 @@ export const editLeadersOperation = (state: ILeader[], {payload}: {payload: ILea
 export const getLeadersOperation = (state: ILeader[], {payload}: {payload: ILeader[]}) => [
   ...payload.map((item) => ({...item, id: uuidv4(), rank: 0, change: 0})),
 ];
+
+export const addPrevLeadersOperation = (state: ILeader[][], {payload}: {payload: ILeader[]}) => [...state, payload];

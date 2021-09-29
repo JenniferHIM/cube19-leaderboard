@@ -9,6 +9,12 @@ type LeadersItemProps = {
   editLeader: (param: ILeader) => void;
 };
 
+enum listStyles {
+  green,
+  yellow,
+  red,
+}
+
 const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
   const {leader, editLeader} = props;
   return (
