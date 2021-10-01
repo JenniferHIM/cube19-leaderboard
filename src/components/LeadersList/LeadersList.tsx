@@ -2,9 +2,14 @@ import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {modalAddLeadersActions, modalEditLeadersActions} from 'redux/modal/modal-actions';
 import {ILeader} from 'redux/leaders/interfaces/index';
-import {getAllLeaders, sortAllPrevLeaders} from 'redux/leaders/leaders-selectors';
+import {getAllLeaders, sortAllPrevLeaders, sortAllLeaders} from 'redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
-import {fetchLeaders, addPrevLeadersAction} from 'redux/leaders/leaders-actions';
+import {
+  fetchLeaders,
+  addPrevLeadersAction,
+  fetchLeadersRequest,
+  postLeadersRequest,
+} from 'redux/leaders/leaders-actions';
 import LeadersItem from '../LeadersItem/LeadersItem';
 import ModalAdd from '../ModalAdd/ModalAdd';
 import ModalEdit from '../ModalEdit/ModalEdit';
@@ -15,12 +20,21 @@ const LeadersList = () => {
   const [leader, setLeader] = useState<ILeader>();
   const leaders = useSelector(getAllLeaders);
   const prevLeaders = useSelector(sortAllPrevLeaders);
-  const [historyDay, setHistoryDay] = useState(0);
   const [toggleHistory, setToggleHistory] = useState(false);
+  const [currentDay, setCurrentDay] = useState(0);
 
   useEffect(() => {
     dispatch(fetchLeaders());
   }, []);
+
+  useEffect(() => {
+    if (currentDay >= leaders.length) {
+      dispatch(fetchLeadersRequest());
+    }
+    if (currentDay < leaders.length) {
+      dispatch(leaders);
+    }
+  }, [currentDay]);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
 
@@ -33,27 +47,43 @@ const LeadersList = () => {
   };
 
   const handlePreviousDay = () => {
-    if (prevLeaders.length === historyDay) {
-      dispatch({type: [addPrevLeadersAction.type], payload: leaders});
-    }
-    setHistoryDay(historyDay - 1);
+    // if (prevLeaders.length === currentDay) {
+    //   dispatch({type: [addPrevLeadersAction.type], payload: leaders});
+    // }
+    setCurrentDay(currentDay - 1);
+    setToggleHistory(true);
   };
 
   const handleNextDay = () => {
-    setHistoryDay(historyDay + 1);
-  };
-
-  const handleToday = () => {
-    dispatch(fetchLeaders());
-    if (!toggleHistory) {
-      dispatch({type: [addPrevLeadersAction.type], payload: leaders});
-    }
-    if (!toggleHistory || historyDay < prevLeaders.length) {
-      setHistoryDay(prevLeaders.length);
-    }
-    setHistoryDay(historyDay + 1);
+    // dispatch(fetchLeaders());
+    // if (!toggleHistory) {
+    //   dispatch({type: [addPrevLeadersAction.type], payload: leaders});
+    // }
+    // if (!toggleHistory || currentDay < prevLeaders.length) {
+    //   setCurrentDay(prevLeaders.length);
+    // }
+    setCurrentDay(currentDay + 1);
     setToggleHistory(false);
   };
+
+  // const handleNextDay = () => {
+  //   setHistoryDay(historyDay + 1);
+  // };
+
+  // const difBetweenLeaders = (arrayOfLeaders: ILeader[], arrayOfPrevLeaders: ILeader[][]) => {
+  //   arrayOfLeaders.map((leader: ILeader) =>
+  //     arrayOfPrevLeaders.map((prevLeader: ILeader[]) =>
+  //       prevLeader.map((leadersObject) => {
+  //         if (leader.name === leadersObject.name) {
+  //           leader.change = leadersObject.rank - leader.rank;
+  //         }
+  //         return leader.change;
+  //       })
+  //     )
+  //   );
+  // };
+
+  // difBetweenLeaders(leaders, prevLeaders);
 
   return (
     <div className={styles.leaderList}>
@@ -61,9 +91,6 @@ const LeadersList = () => {
         <h2 className={styles.leaderList__title}>Leaders table for this period</h2>
         <button type="button" className={styles.leaderList__button__anotherDay} onClick={handlePreviousDay}>
           Previous Day
-        </button>
-        <button type="button" className={styles.leaderList__button} onClick={handleToday}>
-          Today
         </button>
         <button type="button" className={styles.leaderList__button__anotherDay} onClick={handleNextDay}>
           Next Day

@@ -23,6 +23,7 @@ const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
         <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
         <p className={styles.leadersItem__score}>{leader.score}</p>
         <p className={styles.leadersItem__name}>{leader.name}</p>
+        <div>{leader.change === 0 ? 'No Change' : `${leader.change}place`}</div>
         <img className={styles.leadersItem__edit} src={PencilImg} alt="pencil" onClick={() => editLeader(leader)} />
       </li>
     </div>
