@@ -9,6 +9,7 @@ export const sortAllLeaders = (state: RootState) =>
     .map((leader, idx) => ({...leader, rank: idx + 1, change: 0}));
 
 export const getHighScoreLeaders = (state: RootState) => {
-  const allLeaders = state.leaders.leaders[state.leaders.currentDay]?.sort((a, b) => b.score - a.score);
-  return allLeaders ? allLeaders.slice(0, 4) : [];
+  const allLeaders =
+    (state.leaders.leaders[state.leaders.currentDay] && [...state.leaders.leaders[state.leaders.currentDay]]) || [];
+  return allLeaders.sort((a, b) => b.score - a.score).slice(0, 4);
 };

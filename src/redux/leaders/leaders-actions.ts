@@ -18,8 +18,6 @@ export const postLeadersError = createAction('leaders/postLeadersError');
 
 export const setCurrentDay = createAction<number>('leaders/setCurrentDay');
 
-export const addPrevLeadersAction = createAction('leaders/addPrevLeaders');
-
 export const fetchLeaders = () => async (dispatch: Dispatch) => {
   dispatch(fetchLeadersRequest());
   try {

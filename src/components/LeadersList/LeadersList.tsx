@@ -44,25 +44,6 @@ const LeadersList = () => {
     dispatch(setCurrentDay(currentDay + 1));
   };
 
-  // const handleNextDay = () => {
-  //   setHistoryDay(historyDay + 1);
-  // };
-
-  // const difBetweenLeaders = (arrayOfLeaders: ILeader[], arrayOfPrevLeaders: ILeader[][]) => {
-  //   arrayOfLeaders.map((leader: ILeader) =>
-  //     arrayOfPrevLeaders.map((prevLeader: ILeader[]) =>
-  //       prevLeader.map((leadersObject) => {
-  //         if (leader.name === leadersObject.name) {
-  //           leader.change = leadersObject.rank - leader.rank;
-  //         }
-  //         return leader.change;
-  //       })
-  //     )
-  //   );
-  // };
-
-  // difBetweenLeaders(leaders, prevLeaders);
-
   return (
     <div className={styles.leaderList}>
       <div className={styles.leaderList__header}>
