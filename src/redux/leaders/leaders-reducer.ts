@@ -1,31 +1,23 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {ILeader} from './interfaces/index';
-import {
-  addLeaders,
-  editLeaders,
-  fetchLeadersSuccess,
-  postLeadersSuccess,
-  addPrevLeadersAction,
-} from './leaders-actions';
+import {ILeadersReducer} from './interfaces/index';
+import {addLeaders, editLeaders, fetchLeadersSuccess, postLeadersSuccess, setCurrentDay} from './leaders-actions';
 
 import {
   addLeadersOperation,
   editLeadersOperation,
   getLeadersOperation,
-  addPrevLeadersOperation,
+  setCurrentDayOperation,
 } from './leaders-operations';
 
-const initialState: ILeader[] = [];
+const initialState: ILeadersReducer = {
+  currentDay: 0,
+  leaders: [],
+};
 
 export const leaders = createReducer(initialState, {
   [addLeaders.type]: addLeadersOperation,
   [editLeaders.type]: editLeadersOperation,
   [fetchLeadersSuccess.type]: getLeadersOperation,
   [postLeadersSuccess.type]: addLeadersOperation,
-});
-
-const initialStatePrevLeaders: ILeader[][] = [];
-
-export const prevLeaders = createReducer(initialStatePrevLeaders, {
-  [addPrevLeadersAction.type]: addPrevLeadersOperation,
+  [setCurrentDay.type]: setCurrentDayOperation,
 });
