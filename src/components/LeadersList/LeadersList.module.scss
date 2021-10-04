@@ -28,6 +28,13 @@
     width: 140px;
     height: 41px;
     cursor: pointer;
+
+    &__anotherDay {
+      width: 140px;
+      height: 41px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   }
 }
 

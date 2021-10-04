@@ -1,3 +1,8 @@
+export interface ILeadersReducer {
+  currentDay: number;
+  leaders: Array<Array<ILeader>>;
+}
+
 export interface ILeader {
   id: string;
   name: string;

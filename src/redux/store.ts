@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import leaders from './leaders/leaders-reducer';
+import {leaders} from './leaders/leaders-reducer';
 import {isModalAddLeaders, isModalEditLeaders} from './modal/modal-reducer';
 
 const store = configureStore({
