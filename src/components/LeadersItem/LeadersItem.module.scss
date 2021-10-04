@@ -9,6 +9,13 @@
     @include displayFlex(null, center, null);
   }
 
+  &__place {
+    width: 22px;
+		height: 21px;
+		font: normal bold 20px/21px "Gilroy";
+		color: $place-color;
+  }
+
   &__img {
     width: 38px;
     height: 38px;
@@ -36,4 +43,38 @@
     margin-right: 33px;
     margin-left: 400px;
   }
+
+  &__green {
+		color: $score-color;
+		@extend %leadersItem;
+
+		&::before {
+			content: url(../../images/arrowGreen.png);
+		}
+	}
+
+	&__yellow {
+		color: $score-yellow;
+		@extend %leadersItem;
+
+		&::before {
+			content: url(../../images/arrowYellow.png);
+		}
+	}
+
+	&__red {
+		color: $score-red;
+		@extend %leadersItem;
+
+		&::before {
+			content: url(../../images/arrowRed.png);
+		}
+	}
 }
+
+%leadersItem {
+	display: flex;
+	font: normal normal 14px/22px;
+	width: 125px;
+  margin-left: 300px;
+};

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {modalAddLeadersActions, modalEditLeadersActions} from 'redux/modal/modal-actions';
-import {ILeader} from 'redux/leaders/interfaces/index';
+import {ILeader, ILeadersReducer} from 'redux/leaders/interfaces/index';
 import {getAllLeaders, getCurrentDay} from 'redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
 import {fetchLeaders, setCurrentDay} from 'redux/leaders/leaders-actions';
@@ -24,6 +24,9 @@ const LeadersList = () => {
     if (currentDay >= leaders.length) {
       dispatch(fetchLeaders());
     }
+    if (currentDay || leaders.length) {
+      difBetweenLeaders(leaders[currentDay], leaders);
+    }
   }, [currentDay]);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
@@ -42,6 +45,19 @@ const LeadersList = () => {
 
   const handleNextDay = () => {
     dispatch(setCurrentDay(currentDay + 1));
+  };
+
+  const difBetweenLeaders = (arrayOfLeaders: ILeader[], currentDayArrayOfLeaders: ILeader[][]) => {
+    arrayOfLeaders.map((leader: ILeader) =>
+      currentDayArrayOfLeaders.map((currentDay: ILeader[]) =>
+        currentDay.map((leadersObject) => {
+          if (leader.name === leadersObject.name) {
+            leader.change = leadersObject.rank - leader.rank;
+          }
+          return leader.change;
+        })
+      )
+    );
   };
 
   return (
