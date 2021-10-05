@@ -17,7 +17,22 @@ export const editLeadersOperation = (state: ILeadersReducer, {payload}: {payload
 
 export const getLeadersOperation = (state: ILeadersReducer, {payload}: {payload: ILeader[]}) => ({
   ...state,
-  leaders: [...state.leaders, payload.map((item) => ({...item, id: uuidv4(), rank: 0, change: 0}))],
+  leaders: [
+    ...state.leaders,
+    payload.map((item) => ({
+      ...item,
+      id: uuidv4(),
+      rank: state.currentDay
+        ? (state.leaders[state.currentDay - 1].find((el) => el.name === item.name)?.score || 0) - item.score
+        : 0,
+      change: 0,
+      // state.currentDay
+      // ? state.leaders[state.currentDay - 1].sort().find()
+      // : 0,
+      // ? (state.leaders.[state.currentDay].sort((a, b) => a.state.currentDay - b.state.[currentDay - 1])?.rank || 0) - item.rank
+      // : 0,
+    })),
+  ],
 });
 
 export const setCurrentDayOperation = (state: ILeadersReducer, {payload}: {payload: number}) => ({

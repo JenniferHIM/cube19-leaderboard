@@ -20,7 +20,7 @@ const listStyles = {
 const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
   const {leader, editLeader} = props;
   return (
-    <div className={styles.leadersItem}>
+    <div className={styles.wrapper}>
       <li key={uuidv4()} className={styles.leadersItem__item}>
         <div className={styles.leadersItem__place}>{leader.rank} place</div>
         <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />

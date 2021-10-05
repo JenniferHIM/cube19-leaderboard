@@ -16,17 +16,18 @@ const LeadersList = () => {
   const leaders = useSelector(getAllLeaders);
   const currentDay = useSelector(getCurrentDay);
 
-  useEffect(() => {
-    dispatch(fetchLeaders());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchLeaders());
+  // }, []);
 
   useEffect(() => {
     if (currentDay >= leaders.length) {
       dispatch(fetchLeaders());
     }
-    if (currentDay || leaders.length) {
-      difBetweenLeaders(leaders[currentDay], leaders);
-    }
+    // if (currentDay || leaders.length) {
+    // difBetweenLeaders(leaders[currentDay], leaders);
+    // difBetweenLeaders(currentDay, leaders);
+    // }
   }, [currentDay]);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
@@ -47,18 +48,29 @@ const LeadersList = () => {
     dispatch(setCurrentDay(currentDay + 1));
   };
 
-  const difBetweenLeaders = (arrayOfLeaders: ILeader[], currentDayArrayOfLeaders: ILeader[][]) => {
-    arrayOfLeaders.map((leader: ILeader) =>
-      currentDayArrayOfLeaders.map((currentDay: ILeader[]) =>
-        currentDay.map((leadersObject) => {
-          if (leader.name === leadersObject.name) {
-            leader.change = leadersObject.rank - leader.rank;
-          }
-          return leader.change;
-        })
-      )
-    );
-  };
+  // const difBetweenLeaders = (arrayOfLeaders: ILeader[], currentDayArrayOfLeaders: ILeader[][]) => {
+  //   arrayOfLeaders.map((leader: ILeader) =>
+  //     currentDayArrayOfLeaders.map((currentDay: ILeader[]) =>
+  //       currentDay.map((leadersObject) => {
+  //         if (leader.name === leadersObject.name) {
+  //           leader.change = leadersObject.rank - leader.rank;
+  //         }
+  //         return leader.change;
+  //       })
+  //     )
+  //   );
+  // };
+
+  // const difBetweenLeaders = (currentDay: number, arrayOfLeaders: ILeader[][]) => {
+  //   if (currentDay || leaders.length) {
+  //     arrayOfLeaders.map((leadersObject: ILeader) => {
+  //       if (leader.name === leadersObject.name) {
+  //         leader.change = leadersObject.rank - leader.rank;
+  //       }
+  //       return leader.change;
+  //     });
+  //   }
+  // };
 
   return (
     <div className={styles.leaderList}>
