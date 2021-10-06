@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {modalAddLeadersActions, modalEditLeadersActions} from 'redux/modal/modal-actions';
-import {ILeader, ILeadersReducer} from 'redux/leaders/interfaces/index';
+import {ILeader} from 'redux/leaders/interfaces/index';
 import {getAllLeaders, getCurrentDay} from 'redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
 import {fetchLeaders, setCurrentDay} from 'redux/leaders/leaders-actions';

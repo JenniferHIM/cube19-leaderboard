@@ -24,5 +24,6 @@ export const getHighScoreLeaders = (state: RootState) => {
 
     return leader;
   });
+
   return allLeaders.sort((a, b) => b.score - a.score).slice(0, 4);
 };

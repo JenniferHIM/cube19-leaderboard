@@ -12,9 +12,9 @@ type LeadersItemProps = {
 };
 
 const listStyles = {
-  green: 'leadersItem__green',
-  yellow: 'leadersItem__yellow',
-  red: 'leadersItem__red',
+  green: styles.leadersItem__green,
+  yellow: styles.leadersItem__yellow,
+  red: styles.leadersItem__red,
 };
 
 const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
