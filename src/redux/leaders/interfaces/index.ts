@@ -10,3 +10,8 @@ export interface ILeader {
   score: number;
   change: number;
 }
+
+export interface ILeaderResponse {
+  name: string;
+  score: number;
+}

@@ -5,9 +5,11 @@ import {ILeader} from 'redux/leaders/interfaces/index';
 import {getAllLeaders, getCurrentDay} from 'redux/leaders/leaders-selectors';
 import {modalAddLeadersSelectors, modalEditLeadersSelectors} from 'redux/modal/modal-selectors';
 import {fetchLeaders, setCurrentDay} from 'redux/leaders/leaders-actions';
+import cn from 'classnames';
 import LeadersItem from '../LeadersItem/LeadersItem';
 import ModalAdd from '../ModalAdd/ModalAdd';
 import ModalEdit from '../ModalEdit/ModalEdit';
+
 import styles from './LeadersList.module.scss';
 
 const LeadersList = () => {
@@ -15,10 +17,7 @@ const LeadersList = () => {
   const [leader, setLeader] = useState<ILeader>();
   const leaders = useSelector(getAllLeaders);
   const currentDay = useSelector(getCurrentDay);
-
-  useEffect(() => {
-    dispatch(fetchLeaders());
-  }, []);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     if (currentDay >= leaders.length) {
@@ -50,13 +49,20 @@ const LeadersList = () => {
         <h2 className={styles.leaderList__title}>Leaders table for this period</h2>
         <button
           type="button"
+          className={cn(styles.leaderList__button, {[styles.leaderList__button__buttonFocus]: isFiltered})}
+          onClick={() => setIsFiltered((prevState) => !prevState)}
+        >
+          Sort by
+        </button>
+        <button
+          type="button"
           disabled={currentDay === 0}
-          className={styles.leaderList__button__anotherDay}
+          className={styles.leaderList__buttonAnotherDay}
           onClick={handlePreviousDay}
         >
           Previous Day
         </button>
-        <button type="button" className={styles.leaderList__button__anotherDay} onClick={handleNextDay}>
+        <button type="button" className={styles.leaderList__buttonAnotherDay} onClick={handleNextDay}>
           Next Day
         </button>
         <button type="button" className={styles.leaderList__button} onClick={onToggleAddModal}>
@@ -66,9 +72,10 @@ const LeadersList = () => {
 
       <div className={styles.leaderList__item}>
         {!!leaders.length &&
-          leaders[currentDay]?.map((leader) => (
-            <LeadersItem key={leader.id} leader={leader} editLeader={handleEditLeader} />
-          ))}
+          leaders[currentDay] &&
+          (isFiltered ? [...leaders[currentDay]].sort((a, b) => b.score - a.score) : leaders[currentDay]).map(
+            (leader) => <LeadersItem key={leader.id} leader={leader} editLeader={handleEditLeader} />
+          )}
         {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && leader && <ModalEdit data={leader} />}
       </div>
