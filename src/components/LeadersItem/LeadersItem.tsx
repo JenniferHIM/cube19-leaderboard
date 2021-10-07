@@ -48,7 +48,7 @@ const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
             [listStyles.red]: leader.change < 0,
           })}
         >
-          {leader.change === 0 ? 'No Change' : `${leader.change} place`}
+          {leader.change === 0 ? 'No Change' : `${Math.abs(leader.change)} place`}
         </div>
         <img className={styles.leadersItem__edit} src={PencilImg} alt="pencil" onClick={() => editLeader(leader)} />
       </li>
