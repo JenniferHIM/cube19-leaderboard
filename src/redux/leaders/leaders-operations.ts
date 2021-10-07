@@ -29,11 +29,6 @@ export const getLeadersOperation = (state: ILeadersReducer, {payload}: {payload:
             .findIndex((el) => el.name === item.name) -
           [...payload].sort((a, b) => b.score - a.score).findIndex((el) => el.name === item.name)
         : 0,
-      // state.currentDay
-      // ? state.leaders[state.currentDay - 1].sort().find()
-      // : 0,
-      // ? (state.leaders.[state.currentDay].sort((a, b) => a.state.currentDay - b.state.[currentDay - 1])?.rank || 0) - item.rank
-      // : 0,
     })),
   ],
 });

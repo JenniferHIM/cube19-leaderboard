@@ -21,7 +21,7 @@
     width: 38px;
     height: 38px;
     border-radius: 10px;
-    margin-left: 89px;
+    margin-left: 33px;
   }
 
   &__score {
@@ -34,41 +34,50 @@
   &__name {
     font: normal normal 14px/21px "Lato";
     color: $name;
-    margin-left: 37px;
+    margin-left: 33px;
+    margin-right: auto;
   }
 
   &__edit {
     width: 18px;
     height: 18px;
     cursor: pointer;
-    margin-right: 33px;
-    margin-left: 400px;
+    margin: 0 33px;
   }
 
   &__green {
 		color: $score-color;
 		@extend %leadersItem;
+    @extend %leadersRank;
 
 		&::before {
 			content: url(../../images/arrowGreen.png);
+      display: block;
+      margin-right: 5px;
 		}
 	}
 
 	&__yellow {
 		color: $score-yellow;
 		@extend %leadersItem;
+    @extend %leadersRank;
 
 		&::before {
 			content: url(../../images/arrowYellow.png);
+      display: block;
+      margin-right: 5px;
 		}
 	}
 
 	&__red {
 		color: $score-red;
 		@extend %leadersItem;
+    @extend %leadersRank;
 
 		&::before {
 			content: url(../../images/arrowRed.png);
+      display: block;
+      margin-right: 5px;
 		}
 	}
 }
@@ -77,5 +86,8 @@
 	display: flex;
 	font: normal normal 14px/22px;
 	width: 125px;
-  margin-left: 300px;
 };
+
+%leadersRank {
+  margin-left: auto;
+}

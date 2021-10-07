@@ -15,19 +15,12 @@ const LeadersList = () => {
   const [leader, setLeader] = useState<ILeader>();
   const leaders = useSelector(getAllLeaders);
   const currentDay = useSelector(getCurrentDay);
-
-  // useEffect(() => {
-  //   dispatch(fetchLeaders());
-  // }, []);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     if (currentDay >= leaders.length) {
       dispatch(fetchLeaders());
     }
-    // if (currentDay || leaders.length) {
-    // difBetweenLeaders(leaders[currentDay], leaders);
-    // difBetweenLeaders(currentDay, leaders);
-    // }
   }, [currentDay]);
 
   const onToggleAddModal = () => dispatch(modalAddLeadersActions());
@@ -48,34 +41,17 @@ const LeadersList = () => {
     dispatch(setCurrentDay(currentDay + 1));
   };
 
-  // const difBetweenLeaders = (arrayOfLeaders: ILeader[], currentDayArrayOfLeaders: ILeader[][]) => {
-  //   arrayOfLeaders.map((leader: ILeader) =>
-  //     currentDayArrayOfLeaders.map((currentDay: ILeader[]) =>
-  //       currentDay.map((leadersObject) => {
-  //         if (leader.name === leadersObject.name) {
-  //           leader.change = leadersObject.rank - leader.rank;
-  //         }
-  //         return leader.change;
-  //       })
-  //     )
-  //   );
-  // };
-
-  // const difBetweenLeaders = (currentDay: number, arrayOfLeaders: ILeader[][]) => {
-  //   if (currentDay || leaders.length) {
-  //     arrayOfLeaders.map((leadersObject: ILeader) => {
-  //       if (leader.name === leadersObject.name) {
-  //         leader.change = leadersObject.rank - leader.rank;
-  //       }
-  //       return leader.change;
-  //     });
-  //   }
-  // };
-
   return (
     <div className={styles.leaderList}>
       <div className={styles.leaderList__header}>
         <h2 className={styles.leaderList__title}>Leaders table for this period</h2>
+        <button
+          type="button"
+          className={styles.leaderList__button}
+          onClick={() => setIsFiltered((prevState) => !prevState)}
+        >
+          Sort by
+        </button>
         <button
           type="button"
           disabled={currentDay === 0}
@@ -94,9 +70,10 @@ const LeadersList = () => {
 
       <div className={styles.leaderList__item}>
         {!!leaders.length &&
-          leaders[currentDay]?.map((leader) => (
-            <LeadersItem key={leader.id} leader={leader} editLeader={handleEditLeader} />
-          ))}
+          leaders[currentDay] &&
+          (isFiltered ? [...leaders[currentDay]].sort((a, b) => b.score - a.score) : leaders[currentDay]).map(
+            (leader) => <LeadersItem key={leader.id} leader={leader} editLeader={handleEditLeader} />
+          )}
         {isModalAddLeaders && <ModalAdd />}
         {isModalEditLeaders && leader && <ModalEdit data={leader} />}
       </div>

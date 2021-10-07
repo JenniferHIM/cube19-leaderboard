@@ -19,10 +19,25 @@ const listStyles = {
 
 const LeadersItem: FC<LeadersItemProps> = (props: LeadersItemProps) => {
   const {leader, editLeader} = props;
+  const changeSort = (rank: number) => {
+    switch (rank) {
+      case 1:
+        return 'st';
+      case 2:
+        return 'nd';
+      case 3:
+        return 'rd';
+      default:
+        return 'th';
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <li key={uuidv4()} className={styles.leadersItem__item}>
-        <div className={styles.leadersItem__place}>{leader.rank} place</div>
+        <div className={styles.leadersItem__place}>
+          {leader.rank}
+          {changeSort(leader.rank)}
+        </div>
         <img className={styles.leadersItem__img} src={LeaderImg} alt="leader" />
         <p className={styles.leadersItem__score}>{leader.score}</p>
         <p className={styles.leadersItem__name}>{leader.name}</p>

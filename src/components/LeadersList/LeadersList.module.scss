@@ -29,13 +29,17 @@
     height: 41px;
     cursor: pointer;
 
+    &:hover, &:focus {
+    background: $score-yellow;
+}
+
     &__anotherDay {
       width: 140px;
       height: 41px;
       border-radius: 6px;
       cursor: pointer;
     }
-  }
+    }
 }
 
 
