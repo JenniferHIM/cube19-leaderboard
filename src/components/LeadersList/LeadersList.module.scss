@@ -28,15 +28,20 @@
     width: 140px;
     height: 41px;
     cursor: pointer;
+}
 
-    &__anotherDay {
+  &__button__buttonFocus {
+    border: 3px solid $score-yellow;
+  }
+
+    &__buttonAnotherDay {
       width: 140px;
       height: 41px;
       border-radius: 6px;
       cursor: pointer;
     }
-  }
 }
+
 
 
 
