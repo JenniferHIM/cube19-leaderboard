@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.leaderList {
+  width: 984px;
+  background: $section-background;
+  border: 1px solid $border;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: auto;
+
+  &__header {
+    @include displayFlex(space-between, center, null);
+    margin-right: 25px;
+  }
+
+  &__title {
+    margin-left: 33px;
+    font: normal 600 20px/32px "Gilroy";
+  }
+
+    &__button {
+    color: $section-background;
+    background-color: $add-button;
+    border: $border;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 140px;
+    height: 41px;
+    cursor: pointer;
+}
+
+  &__button__buttonFocus {
+    border: 3px solid $score-yellow;
+  }
+
+    &__buttonAnotherDay {
+      width: 140px;
+      height: 41px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+}
+
+
+
+
+

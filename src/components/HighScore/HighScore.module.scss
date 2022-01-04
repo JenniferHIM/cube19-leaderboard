@@ -1,0 +1,68 @@
+@import '../../styles/fonts';
+@import '../../styles/variables';
+@import '../../styles/mixin';
+
+.wrapper {
+  @include displayFlex(space-between, null, null);
+  width: 984px;
+  height: 187px;
+  background: $add-button;
+  border: 1px solid $border;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-bottom: 37px;
+  margin: auto;
+}
+
+.highScore {
+  &__title {
+    font: normal 600 20px/32px "Gilroy";
+    color: $section-background;
+    margin-left: 27px;
+  }
+
+  &__list {
+    display: flex;
+    margin: 20px 0;
+		list-style: none;
+  }
+
+  &__item {
+    position: relative;
+    margin-right: 27px;
+
+    &__img {
+      width: 84px;
+      height: 84px;
+    }
+
+    &__title {
+      font: normal normal 12px/21px "Lato";
+      color: $section-background;
+      align-items: center;
+      margin: 0;
+    }
+
+    &__score {
+      position: absolute;
+			top: 27px;
+			left: 16px;
+			width: 52px;
+      text-align: center;
+      border-radius: 5px;
+			background-color: $section-background;
+			color: $score-color;
+      font: normal 600 20px/32px "Gilroy";
+    }
+  }
+
+  &__background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 390px;
+    margin-top: 30px;
+  }
+}
