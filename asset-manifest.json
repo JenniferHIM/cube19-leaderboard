@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/cube19-leaderboard/static/css/main.3ea2bc71.chunk.css",
+    "main.js": "/cube19-leaderboard/static/js/main.3c4d7e81.chunk.js",
+    "main.js.map": "/cube19-leaderboard/static/js/main.3c4d7e81.chunk.js.map",
+    "runtime-main.js": "/cube19-leaderboard/static/js/runtime-main.6d9b4be4.js",
+    "runtime-main.js.map": "/cube19-leaderboard/static/js/runtime-main.6d9b4be4.js.map",
+    "static/js/2.4d1353bf.chunk.js": "/cube19-leaderboard/static/js/2.4d1353bf.chunk.js",
+    "static/js/2.4d1353bf.chunk.js.map": "/cube19-leaderboard/static/js/2.4d1353bf.chunk.js.map",
+    "index.html": "/cube19-leaderboard/index.html",
+    "static/css/main.3ea2bc71.chunk.css.map": "/cube19-leaderboard/static/css/main.3ea2bc71.chunk.css.map",
+    "static/js/2.4d1353bf.chunk.js.LICENSE.txt": "/cube19-leaderboard/static/js/2.4d1353bf.chunk.js.LICENSE.txt",
+    "static/media/Title.module.scss": "/cube19-leaderboard/static/media/Lato-Regular.9919edff.ttf",
+    "static/media/business-people.8db6abf3.png": "/cube19-leaderboard/static/media/business-people.8db6abf3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6d9b4be4.js",
+    "static/js/2.4d1353bf.chunk.js",
+    "static/css/main.3ea2bc71.chunk.css",
+    "static/js/main.3c4d7e81.chunk.js"
+  ]
+}
